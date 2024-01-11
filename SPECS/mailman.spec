@@ -2,12 +2,12 @@
 %global __os_install_post %(echo '%{__os_install_post}' | sed -e 's!/usr/lib[^[:space:]]*/brp-python-bytecompile[[:space:]].*$!!g')
 Summary: Mailing list manager with built in Web access
 Name: mailman
-Version: 2.1.29
-Release: 12%{?dist}.2
+Version: 2.1.30
+Release: 1%{?dist}
 Epoch: 3
 Group: Applications/Internet
 Source0: ftp://ftp.gnu.org/pub/gnu/mailman/mailman-%{version}.tgz
-#Source0: http://prdownloads.sourceforge.net/mailman/mailman-%{version}.tgz
+#Source0: http://prdownloads.sourceforge.net/mailman/mailman-%%{version}.tgz
 Source1: mm_cfg.py
 Source3: httpd-mailman.conf
 Source4: mailman.logrotate
@@ -29,8 +29,6 @@ Patch13: mailman-2.1.9-unicode.patch
 Patch21: mailman-2.1.13-env-python.patch
 Patch22: mailman-2.1.15-check_perms.patch
 Patch24: mailman-specify_python_version.patch
-Patch25: mailman-CVE-2020-12137.patch
-Patch26: mailman-bouncer_oom_crash.patch
 Patch27: mailman-2.1.29-login_content_injection.patch
 Patch28: mailman-2.1.29-options_content_njection.patch
 Patch29: mailman-2.1.29-cmd_reply_encoding.patch
@@ -124,8 +122,6 @@ additional installation steps, these are described in:
 %patch21 -p1
 %patch22 -p1
 %patch24 -p1 -b .python_version
-%patch25 -p0 -b .cve_obj_mime
-%patch26 -p0 -b .bouncer_match
 %patch27 -p0 -b .login_injection
 %patch28 -p0 -b .options_injection
 %patch29 -p0 -b .cmd_reply_encoding
@@ -584,6 +580,10 @@ exit 0
 %dir %attr(775,root,%{mmgroup}) %{lockdir}
 
 %changelog
+* Wed Jul 26 2023 Martin Osvald <mosvald@redhat.com> - 3:2.1.30-1
+- New version 2.1.30
+- Fixes DMARC support (#2140631)
+
 * Sun Nov 28 2021 Martin Osvald <mosvald@redhat.com> - 3:2.1.29-12.2
 - Fix for CVE-2021-44227
 - Resolves: #2026871
