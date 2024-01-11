@@ -1,0 +1,22 @@
+=== modified file 'Mailman/Cgi/private.py'
+--- Mailman/Cgi/private.py	2019-03-06 17:48:32 +0000
++++ Mailman/Cgi/private.py	2020-05-07 13:53:40 +0000
+@@ -162,13 +162,9 @@
+             if mlist.isMember(username):
+                 mlist.MailUserPassword(username)
+             elif username:
+-                # Not a member
+-                if mlist.private_roster == 0:
+-                    # Public rosters
+-                    safeuser = Utils.websafe(username)
+-                    message = Bold(FontSize('+1',
+-                                  _('No such member: %(safeuser)s.'))).Format()
+-                else:
++                # Not a member. Don't report address in any case. It leads to
++                # Content injection. Just log if roster is not public.
++                if mlist.private_roster != 0:
+                     syslog('mischief',
+                        'Reminder attempt of non-member w/ private rosters: %s',
+                        username)
+
+

@@ -1,0 +1,25 @@
+diff --git a/tests/onebounce.py b/tests/onebounce.py
+index 846c4fa..85f3b98 100755
+--- a/tests/onebounce.py
++++ b/tests/onebounce.py
+@@ -1,4 +1,4 @@
+-#! /usr/bin/env python
++#! /usr/bin/python
+ 
+ # Copyright (C) 2002-2018 by the Free Software Foundation, Inc.
+ #
+diff --git a/configure.in b/configure.in
+index eee7f3a..2250ade 100644
+--- a/configure.in
++++ b/configure.in
+@@ -892,6 +892,10 @@ cron/gate_news \
+ cron/mailpasswds \
+ cron/nightly_gzip \
+ cron/senddigests \
++contrib/check_perms_grsecurity.py \
++contrib/qmail-to-mailman.py \
++contrib/rotatelogs.py \
++contrib/sitemapgen
+ ])
+ 
+ dnl Please make sure to leave a space at the end of the last entry.

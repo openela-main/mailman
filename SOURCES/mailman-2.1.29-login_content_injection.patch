@@ -1,0 +1,13 @@
+=== modified file 'Mailman/Cgi/options.py'
+--- Mailman/Cgi/options.py	2019-03-06 17:48:32 +0000
++++ Mailman/Cgi/options.py	2020-04-20 03:10:16 +0000
+@@ -173,7 +173,7 @@
+     try:
+         Utils.ValidateEmail(user)
+     except Errors.EmailAddressError:
+-        doc.addError(_('Illegal Email Address: %(safeuser)s'))
++        doc.addError(_('Illegal Email Address'))
+         loginpage(mlist, doc, None, language)
+         print doc.Format()
+         return
+
